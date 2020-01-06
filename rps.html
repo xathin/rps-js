@@ -9,15 +9,50 @@
 <body>
   <script charset="utf-8">
     function computerPlay() {
-      let choice = Math.floor(Math.random() * 3);
+      let choice = Math.floor(Math.random() * 3)
       if (choice == 0) {
-        return 'Rock';
+        return 'Rock'
       } else if (choice == 1) {
-        return 'Paper';
+        return 'Paper'
       } else {
-        return 'Scissors';
+        return 'Scissors'
       }
     }
+
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
+        return "Draw, " + playerSelection + " matches " + computerSelection
+      } else {
+        const loseMsg = "You Lose! " + computerSelection + " beats " + playerSelection
+        const winMsg = "You Win! " + playerSelection + " beats " + computerSelection
+        switch (playerSelection.toLowerCase()) {
+          case "rock":
+            if (computerSelection.toLowerCase() == "paper") {
+              return loseMsg
+            } else {
+              return winMsg
+            }
+            break
+          case "paper":
+            if (computerSelection.toLowerCase() == "scissors") {
+              return loseMsg
+            } else {
+              return winMsg
+            }
+            break
+          case "scissors":
+            if (computerSelection.toLowerCase() == "rock") {
+              return loseMsg
+            } else {
+              return winMsg
+            }
+        }
+      }
+    }
+
+    const playerSelection = 'rock'
+    const computerSelection = computerPlay()
+    console.log(playRound(playerSelection, computerSelection))
   </script>
 </body>
 </html>
