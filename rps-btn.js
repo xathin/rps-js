@@ -40,30 +40,25 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  let gamesPlayed
-  let playerWins = 0
-  let computerWins = 0
-  for (gamesPlayed = 0; gamesPlayed < 5; gamesPlayed++) {
-    let playerSelection = prompt("Choose Rock, Paper, or Scissors: ")
-    let computerSelection = computerPlay()
-    let msg = playRound(playerSelection, computerSelection)
-    if (msg[4] == 'W') {
-      playerWins++
-    } else if (msg[4] == 'L') {
-      computerWins++
-    }
-    console.log(msg)
-  }
-  console.log("Score: Player - " + playerWins + " Computer - " + computerWins)
-}
-
-// game()
-
 const buttons = document.querySelectorAll('button');
+
+let playerWins = 0;
+let computerWins = 0;
+const divResult = document.querySelector('div.results');
+const player = document.querySelector('.score > #player');
+const computer = document.querySelector('.score > #computer');
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
-    console.log(playRound(button.id, computerPlay()));
+    let computerSelection = computerPlay();
+    let msg = (playRound(button.id, computerSelection));
+    if (msg[4] == 'W') {
+      playerWins++;
+    } else if (msg[4] == 'L') {
+      computerWins++
+    }
+    divResult.textContent = msg;
+    player.textContent = playerWins;
+    computer.textContent = computerWins;
   });
 });
