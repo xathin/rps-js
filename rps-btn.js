@@ -58,5 +58,12 @@ function game() {
   console.log("Score: Player - " + playerWins + " Computer - " + computerWins)
 }
 
-game()
+// game()
 
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    console.log(playRound(button.id, computerPlay()));
+  });
+});
