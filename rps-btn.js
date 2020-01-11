@@ -44,14 +44,15 @@ const buttons = document.querySelectorAll('button');
 
 let playerWins = 0;
 let computerWins = 0;
+let computerSelection, msg;
 const divResult = document.querySelector('div.results');
 const player = document.querySelector('.score > #player');
 const computer = document.querySelector('.score > #computer');
 
 buttons.forEach((button) => {
   button.addEventListener('click', (e) => {
-    let computerSelection = computerPlay();
-    let msg = (playRound(button.id, computerSelection));
+    computerSelection = computerPlay();
+    msg = (playRound(button.id, computerSelection));
     if (msg[4] == 'W') {
       playerWins++;
     } else if (msg[4] == 'L') {
