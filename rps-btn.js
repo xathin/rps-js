@@ -22,14 +22,12 @@ function playRound(playerSelection, computerSelection) {
         } else {
           return winMsg
         }
-        break
       case "paper":
         if (computerSelection.toLowerCase() == "scissors") {
           return loseMsg
         } else {
           return winMsg
         }
-        break
       case "scissors":
         if (computerSelection.toLowerCase() == "rock") {
           return loseMsg
@@ -49,8 +47,15 @@ const divResult = document.querySelector('div.results');
 const player = document.querySelector('.score > #player');
 const computer = document.querySelector('.score > #computer');
 
+function winner() {
+  if (playerWins == 5 || computerWins == 5) {
+    return true;
+  }
+  return false;
+}
+
 buttons.forEach((button) => {
-  button.addEventListener('click', (e) => {
+  button.addEventListener('click', () => {
     computerSelection = computerPlay();
     msg = (playRound(button.id, computerSelection));
     if (msg[4] == 'W') {
@@ -61,5 +66,10 @@ buttons.forEach((button) => {
     divResult.textContent = msg;
     player.textContent = playerWins;
     computer.textContent = computerWins;
+    if (winner()) {
+      divResult.textContent += "<br/>Winner detected!"
+      playerWins = 0;
+      computerWins = 0;
+    }
   });
 });
